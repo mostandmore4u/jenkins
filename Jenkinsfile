@@ -1,37 +1,49 @@
- pipeline {
-      agent { 
+pipeline {
+    agent { 
         node { 
             label 'ROBOSHOP' 
         } 
     }
-
+    // Build
     stages {
         stage('Build') {
             steps {
                 script {
-                  sh """
-                      echo "Building "
-                  """
+                    sh """
+                        echo "Building"
+                    """
                 }
             }
         }
         stage('Test') {
             steps {
-               script {
-                  sh """
-                      echo "Testing "
-                  """
+                script {
+                    sh """
+                        echo "Testing"
+                    """
                 }
             }
         }
         stage('Deploy') {
             steps {
-               script {
-                  sh """
-                      echo "Deploying"
-                  """
+                script {
+                    sh """
+                        echo "Deploying"
+                    """
                 }
             }
+        }
+    }
+
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+        success { 
+            echo 'I will run when success'
+        }
+        failure { 
+            echo 'I will Run when it is failed'
         }
     }
 }
